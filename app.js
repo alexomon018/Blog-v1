@@ -4,6 +4,7 @@ const bodyParser = require("body-parser");
 const ejs = require("ejs");
 const _ = require("lodash");
 const request = require("request");
+const important = require('./important');
 const https = require("https");
 const homeStartingContent =
   "Lacus vel facilisis volutpat est velit egestas dui id ornare. Semper auctor neque vitae tempus quam. Sit amet cursus sit amet dictum sit amet justo. Viverra tellus in hac habitasse. Imperdiet proin fermentum leo vel orci porta. Donec ultrices tincidunt arcu non sodales neque sodales ut. Mattis molestie a iaculis at erat pellentesque adipiscing. Magnis dis parturient montes nascetur ridiculus mus mauris vitae ultricies. Adipiscing elit ut aliquam purus sit amet luctus venenatis lectus. Ultrices vitae auctor eu augue ut lectus arcu bibendum at. Odio euismod lacinia at quis risus sed vulputate odio ut. Cursus mattis molestie a iaculis at erat pellentesque adipiscing.";
@@ -70,14 +71,11 @@ app.post("/", (req, res) => {
       },
     ],
   };
-  const listID = `f77e51190d`;
+  const listID = important.listId;
   const jsonData = JSON.stringify(data);
 
   const url = `https://us10.api.mailchimp.com/3.0/lists/${listID}`;
-  const options = {
-    method: "POST",
-    auth: "aleksa:f61ab3a1a07875fb992fc986dc493483-us10",
-  };
+  const options = important.options;
   const request = https.request(url, options, (response) => {
     if (response.statusCode === 200) {
       res.render("success");
