@@ -1,5 +1,8 @@
-<%- include('partials/header') %> 
-<h1>About</h1>
-
-<p><%= aboutCont %> </p>
-<%- include('partials/footer') %> 
+<%- include('partials/header') %>
+<% about.map(result => { %>
+<h1><%=result.title%></h1>
+<p>
+  <%=result.content%>
+</p>
+<% }); %> 
+<%- include('partials/footer') %>
