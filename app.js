@@ -4,7 +4,7 @@ const bodyParser = require("body-parser");
 const ejs = require("ejs");
 const _ = require("lodash");
 const request = require("request");
-const important = require('./important');
+const base = require('./base');
 const https = require("https");
 const mongoose = require('mongoose');
 
@@ -15,7 +15,7 @@ app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
-mongoose.connect(`mongodb+srv://admin-aleksa:${important.pass}@cluster0.itmc6.mongodb.net/blogDB`,{useNewUrlParser: true, useUnifiedTopology: true})
+mongoose.connect(`mongodb+srv://admin-aleksa:${base.pass}@cluster0.itmc6.mongodb.net/blogDB`,{useNewUrlParser: true, useUnifiedTopology: true})
 
 const startingContentSchema = new mongoose.Schema({
   title:String,
@@ -114,11 +114,11 @@ app.post("/", (req, res) => {
       },
     ],
   };
-  const listID = important.listId;
+  const listID = base.listId;
   const jsonData = JSON.stringify(data);
 
   const url = `https://us10.api.mailchimp.com/3.0/lists/${listID}`;
-  const options = important.options;
+  const options = base.options;
   const request = https.request(url, options, (response) => {
     if (response.statusCode === 200) {
       res.render("success");
