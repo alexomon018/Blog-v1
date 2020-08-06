@@ -15,7 +15,7 @@ app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
-mongoose.connect('mongodb+srv://admin-aleksa:adidas3000@cluster0.itmc6.mongodb.net/blogDB',{useNewUrlParser: true, useUnifiedTopology: true})
+mongoose.connect(`mongodb+srv://admin-aleksa:${important.pass}@cluster0.itmc6.mongodb.net/blogDB`,{useNewUrlParser: true, useUnifiedTopology: true})
 
 const startingContentSchema = new mongoose.Schema({
   title:String,

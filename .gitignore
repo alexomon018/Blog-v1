@@ -1,5 +1,1 @@
-/node-modules
-npm-debug.log
-.DS_Store
-important.js
-/*.env
+/.important.js
